@@ -8,20 +8,26 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-
-// inisiasi database
-const db = require("./src/v1/models/index");
-db.sequelize.sync({ alter: true });
-
 app.get("/ping", (req, res) => {
-    res.send({
+    res.json({
         error: false,
         message: "Server is healthy",
     });
 });
 
-var Server = http.listen(8123, () =>{
+// buat build tabe;
+app.get("/dev/build", (req, res) => {
+    // inisiasi database
+    const db = require("./src/v1/models/index");
+    db.sequelize.sync({ alter: true });
+    res.json({
+        error: false,
+        message: "sukses build",
+    });
+});
 
+var Server = http.listen(8123, () =>{
+    // cek server
 });
 
 // inisialisasi router
