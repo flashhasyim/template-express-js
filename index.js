@@ -8,6 +8,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+
+// inisiasi database
+const db = require("./src/v1/models/index");
+db.sequelize.sync({ alter: true });
+
 app.get("/ping", (req, res) => {
     res.send({
         error: false,
